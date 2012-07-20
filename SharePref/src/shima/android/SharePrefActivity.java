@@ -15,10 +15,21 @@ public class SharePrefActivity extends Activity {
         setContentView(R.layout.main);
         
 		prefs = new Prefs(this);
+		
+		long start = System.currentTimeMillis();
+		
 		singular();
+		
+		long curr = System.currentTimeMillis();
+		Log.d(TAG, "@@@ time=" + (curr - start));
+		start = curr;
+		
 		prefs.begin();
 		singular();
 		prefs.end();
+		
+		curr = System.currentTimeMillis();
+		Log.d(TAG, "@@@ time=" + (curr - start));
 
 
     }

@@ -19,6 +19,7 @@ public class PreferencesWrapper {
 	protected PreferencesWrapper(Context c, String n)			{ context = c; name = n; }
 	protected PreferencesWrapper(Context c, int m)				{ context = c; mode = m; }
 	protected PreferencesWrapper(Context c)						{ context = c; }
+	@SuppressWarnings("unchecked") protected static <T> T autoCast(Object src) { return (T)src; }
 	public void begin() {
 		preferences = fromContext();
 		editor = null;
@@ -33,9 +34,7 @@ public class PreferencesWrapper {
 	
 	private SharedPreferences fromContext() { return context.getSharedPreferences(name, mode); }
 	private boolean singular() { return preferences == null; }
-	private SharedPreferences preferences() {
-		return singular()? fromContext() : preferences;
-	}
+	private SharedPreferences preferences() { return singular()? fromContext() : preferences; }
 	private Editor editor() {
 		if (singular()) {
 			return fromContext().edit();

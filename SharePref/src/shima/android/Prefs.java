@@ -14,10 +14,7 @@ public class Prefs extends PreferencesWrapper {
 	}
 	private static final Point defaultPoint = new Point(1, 2);
 	
-	public Prefs(Context c, String n, int m)	{ super(c, n, m); }
-	public Prefs(Context c, String n)			{ super(c, n); }
-	public Prefs(Context c, int m)				{ super(c, m); }
-	public Prefs(Context c)						{ super(c); }
+	public Prefs(Context c) { super(c); }
 	// getters
 	public boolean getFlag()	{ return get(Key.FLAG, false); }
 	public int getLevel()		{ return get(Key.LEVEL, 5); }
@@ -26,7 +23,7 @@ public class Prefs extends PreferencesWrapper {
 	public double getFactor()	{ return get(Key.FACTOR, 20.7788); }
 	public String getTitle()	{ return get(Key.TITLE, "default title"); }
 	public Point getPoint()		{ return get(Key.POINT, Point.class, defaultPoint); }
-	public HashMap<String, Integer> getMembers() { return get(Key.MEMBERS, HashMap.class, null); }
+	public HashMap<String, Integer> getMembers() { return autoCast(get(Key.MEMBERS, HashMap.class, null)); }
 	// setters
 	public void setFlag(boolean v)	{ put(Key.FLAG, v); }
 	public void setLevel(int v)		{ put(Key.LEVEL, v); }
